@@ -79,6 +79,6 @@ C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(423,49): warning C4244: “参数”: �
 C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(423,64): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
 C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(181,13): warning C4477: “fprintf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“unsigned __int64”
 C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(181,13): message : 请考虑在格式字符串中使用“%zu”
-C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(363,13): warning C4477: “fprintf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“unsigned __int64”
-C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(363,13): message : 请考虑在格式字符串中使用“%zu”
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(364,13): warning C4477: “fprintf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(364,13): message : 请考虑在格式字符串中使用“%zu”
   srp.vcxproj -> C:\Users\leesh\Desktop\srp\srp\x64\Debug\srp.exe

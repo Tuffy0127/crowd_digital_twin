@@ -279,7 +279,7 @@ struct node
 vector<vector<node>> map_matrix_A;
 
 // 可调参数
-const int a_step = 3;
+const int a_step = 5;
 vector<cordinate> direction = { {a_step,0}, {-a_step,0}, {0,a_step}, {0,-a_step} }; // 正向
 vector<cordinate> ob_direction = { {a_step,a_step},{a_step,-a_step},{-a_step,-a_step},{-a_step,a_step} }; // 斜向
 const int path_len = 2;

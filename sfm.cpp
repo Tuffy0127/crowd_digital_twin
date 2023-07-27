@@ -228,8 +228,9 @@ void step()
 				agent_force(a, b, &total_force_x, &total_force_y,dis);
 			}
 		}
+		//cout << agent_counter << endl;
 
-		if (a->jam_time >= jam_time_threshole && agent_counter>15)
+		if (a->jam_time >= jam_time_threshole && agent_counter>12 && agent_counter<=20) // 还没被挤入人群的绕路走,已经在人群里的就别搜了老老实实挤吧
 		{
 			a->jam_time = 0;
 			a->path.clear();
@@ -388,9 +389,13 @@ int main()
 		
 		step();
 		
-		if ((i+1) % 10 == 0)
+		if ((i + 1) % 100 == 0)
 		{
 			update_density();
+		}
+		if ((i+1) % 10 == 0)
+		{
+			
 			end = clock();
 			printf("Step: %d / %d ;Remaining time: %d s             \r", i + 1, step_num, (end - start) * (step_num - i - 1)/ 10 / 1000);
 			start = clock();
