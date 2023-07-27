@@ -10,52 +10,110 @@
 
 using namespace std;
 
-const int thread_num = 12;
+const int thread_num = 12; // OpenMP线程数
 
+// 可调参数
 int agent_num = 500;
 int step_num = 5000;
 double tick = 0.03;//timestep
-int  obstical_line_num = 0;
-
-clock_t total_start, total_end;
-
-vector<AGENT> agent_list; // agent vector
-struct OBLINE obstical_lines[MAX_OBLINE_NUM]; // obstical line array
-FILE* f = fopen("output.txt", "w");
-struct cordinate goal[6] = { {5,22},{33,22},{5,34},{33,34},{5,56},{33,56} };
-
 int jam_time_threshole = 50;
 
+// 程序数据
+int  obstical_line_num = 0;
+clock_t total_start, total_end;
+vector<AGENT> agent_list; // agent vector
+struct OBLINE obstical_lines[MAX_OBLINE_NUM]; // obstical line array
+
+// 输出文件
+FILE* f = fopen("output.txt", "w");
+
+// 终点
+struct cordinate goal[6] = { {5,22},{33,22},{5,34},{33,34},{5,56},{33,56} };
 
 
 
-void test();
-void init_agent(int);
-void step();
-void output(AGENT*);//写出agent坐标
+
+
+// 函数声明
 void init_obline(string);//障碍物读入
 void init_map(string);
+void init_agent(int);
 void init();
+void output(AGENT*);//写出agent坐标
+void step();
 void update_density();
+void test();
 
 
-void test()
+// 函数实现
+void init_obline(string obline_file)
 {
-	init_obline("./map/obstacles3.txt");
-	init_map("./map/matrix3.txt");
-	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
-	
-	AGENT a;
-	a.id = 1;
-	a.m = 80;
-	a.gx = 1;
-	a.gy = 0;
-	a.x = 0;
-	a.y = 0;
+	fstream infile(obline_file, ios::in);
+	string buf;
+	int num = 0;
+	getline(infile, buf);
+	while (!infile.eof()) {
+		stringstream ss(buf);
+		ss >> obstical_lines[num].sy >> obstical_lines[num].sx >> obstical_lines[num].ey >> obstical_lines[num].ex;
+		obstical_lines[num].sx /= map_factor;
+		obstical_lines[num].sy /= map_factor;
+		obstical_lines[num].ex /= map_factor;
+		obstical_lines[num].ey /= map_factor;
+		obstical_lines[num].len = sqrt((obstical_lines[num].sx - obstical_lines[num].ex) * (obstical_lines[num].sx - obstical_lines[num].ex) +
+			(obstical_lines[num].sy - obstical_lines[num].ey) * (obstical_lines[num].sy - obstical_lines[num].ey));
+		num++;
+		getline(infile, buf);
 
-	A_star(&a);
+	}
+	obstical_line_num = num;
+	infile.close();
+}
 
 
+void init_map(string map_file)
+{
+	fstream infile(map_file, ios::in);
+	string buf = "";
+	getline(infile, buf);
+	while (!infile.eof())
+	{
+		row_num++;
+		stringstream ss(buf);
+		map_matrix.push_back(vector<int>());
+		int temp;
+		while (!ss.eof())
+		{
+			if (row_num == 1)
+			{
+				col_num++;
+			}
+			ss >> temp;
+			map_matrix[map_matrix.size() - 1].push_back(temp);
+		}
+		getline(infile, buf);
+
+
+	}
+	col_num--;
+	infile.close();
+	for (int i = 0; i < row_num; i++)
+	{
+		vector<node> temp;
+		for (int j = 0; j < col_num; j++)
+		{
+			temp.push_back(node(j, i));
+		}
+		map_matrix_A.push_back(temp);
+	}
+	for (int i = 0; i < row_num; i++)
+	{
+		vector<int> temp;
+		for (int j = 0; j < col_num; j++)
+		{
+			temp.push_back(0);
+		}
+		density_map.push_back(temp);
+	}
 
 }
 
@@ -100,6 +158,21 @@ void init_agent(int agent_num)
 		cout << a.id << endl;
 	}*/
 
+}
+
+
+void init()
+{
+	init_obline("./map/obstacles4.txt");
+	init_map("./map/matrix4.txt");
+	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
+	init_agent(agent_num);
+}
+
+
+void output(AGENT* a)
+{
+	fprintf(f, "%d %g %g %d %d\n", a->id, a->x, a->y, a->np, a->color);
 }
 
 
@@ -222,93 +295,6 @@ void step()
 }
 
 
-
-void output(AGENT* a)
-{
-	fprintf(f, "%d %g %g %d %d\n",a->id,a->x,a->y,a->np,a->color);
-}
-
-
-void init_obline(string obline_file)
-{
-	fstream infile(obline_file, ios::in);
-	string buf;
-	int num = 0;
-	getline(infile, buf);
-	while (!infile.eof()) {
-		stringstream ss(buf);
-		ss >> obstical_lines[num].sy >> obstical_lines[num].sx >> obstical_lines[num].ey >> obstical_lines[num].ex;
-		obstical_lines[num].sx /= map_factor;
-		obstical_lines[num].sy /= map_factor;
-		obstical_lines[num].ex /= map_factor;
-		obstical_lines[num].ey /= map_factor;
-		obstical_lines[num].len = sqrt((obstical_lines[num].sx - obstical_lines[num].ex) * (obstical_lines[num].sx - obstical_lines[num].ex) +
-			(obstical_lines[num].sy - obstical_lines[num].ey) * (obstical_lines[num].sy - obstical_lines[num].ey));
-		num++;
-		getline(infile, buf);
-
-	}
-	obstical_line_num = num;
-	infile.close();
-}
-
-
-void init_map(string map_file)
-{
-	fstream infile(map_file, ios::in);
-	string buf = "";
-	getline(infile, buf);
-	while (!infile.eof())
-	{
-		row_num++;
-		stringstream ss(buf);
-		map_matrix.push_back(vector<int>());
-		int temp;
-		while (!ss.eof())
-		{
-			if (row_num == 1)
-			{
-				col_num++;
-			}
-			ss >> temp;
-			map_matrix[map_matrix.size() - 1].push_back(temp);
-		}
-		getline(infile, buf);
-		
-		
-	}
-	col_num--;
-	infile.close();
-	for (int i = 0; i < row_num; i++)
-	{
-		vector<node> temp;
-		for (int j = 0; j < col_num; j++)
-		{
-			temp.push_back(node(j, i));
-		}
-		map_matrix_A.push_back(temp);
-	}
-	for (int i = 0; i < row_num; i++)
-	{
-		vector<int> temp;
-		for (int j = 0; j < col_num; j++)
-		{
-			temp.push_back(0);
-		}
-		density_map.push_back(temp);
-	}
-
-}
-
-
-void init()
-{
-	init_obline("./map/obstacles4.txt");
-	init_map("./map/matrix4.txt");
-	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
-	init_agent(agent_num);
-}
-
 void update_density()
 {
 	for (int i = 0; i < row_num; ++i)
@@ -325,10 +311,10 @@ void update_density()
 		{
 			for (int k = -3; k <= 3; ++k)
 			{
-				cout << int(agent_list[i].x * map_factor + j) <<" " << int(agent_list[i].y * map_factor + k) << endl;
+				
 				if (in_map(int(agent_list[i].x * map_factor+j), int(agent_list[i].y * map_factor+k)))
 				{
-					density_map[int(agent_list[i].y * map_factor+j)][int(agent_list[i].x * map_factor+k)] += 10;
+					density_map[int(agent_list[i].y * map_factor+k)][int(agent_list[i].x * map_factor+j)] += 10;
 				}
 			}
 		}
@@ -338,8 +324,29 @@ void update_density()
 }
 
 
+void test()
+{
+	init_obline("./map/obstacles3.txt");
+	init_map("./map/matrix3.txt");
+	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
+
+	AGENT a;
+	a.id = 1;
+	a.m = 80;
+	a.gx = 1;
+	a.gy = 0;
+	a.x = 0;
+	a.y = 0;
+
+	A_star(&a);
 
 
+
+}
+
+
+
+// main
 int main()
 {
 	total_start = clock();

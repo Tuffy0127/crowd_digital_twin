@@ -8,31 +8,36 @@
 
 using namespace std;
 
+// 数量限制
 #define MAX_AGENT_NUM 1000 // 最大agent数量，因为使用的是vector所以实际上没用到
 #define MAX_OBLINE_NUM 1000 // 最大障碍物数量
 
+// 建模参数
 #define MAX_V 1.02 // agent 最大速度
 #define sense_range 5 // 感知范围：m
 #define density 320 // 质量/半径，m/density = r 320
 #define tao 0.5 // 目前方向转移到目标方向的加速度参数
 
-
+// sfm参数
 #define k1 120000 // body force parameter
 #define k2 240000 // tangential force parameter 切向力参数s
 #define A 2000 // N// A * exp[dis/B] only social force
 #define B 0.08 // m
 
+//行列数
 int col_num = 0;
 int row_num = 0;//init in init_map
 
+// 点阵图放大比
+double  map_factor = 10;
 
-double  map_factor = 10; // 点阵图放大比
-
+// 程序数据
 vector<vector<int>> map_matrix; // 点阵图
 vector<vector<int>> density_map; // 人群密度图,给A*考虑选取人少的路径
 
 
-// 坐标结构体
+
+// 结构体
 struct cordinate {
 	double x;
 	double y;
@@ -41,10 +46,7 @@ struct cordinate {
 		x = a;
 		y = b;
 	}
-};
-
-
-// agent 结构体
+}; // 坐标结构体
 struct AGENT
 {
 	int id;
@@ -67,9 +69,7 @@ struct AGENT
 	int color = 0;
 
 	list<cordinate> path; // A* 路径存储
-};
-
-// 障碍物结构体
+}; // agent 结构体
 struct OBLINE
 {
 	double sx; // start point
@@ -78,24 +78,20 @@ struct OBLINE
 	double ey;
 	double len; // length
 
-};
+}; // 障碍物结构体
 
+
+
+// 函数声明
 double randval(double, double);
-
-// agents 之间距离
-double agent_dis(AGENT, AGENT);
-
-// agents 之间作用力
-void agent_force(AGENT*, AGENT*, double*, double*,double);
-
-// 计算点到线距离
-double point_to_line_dis(double, double, double, double, double, double, double, double*, double*);
-
-// 计算障碍物作用力
-void obline_force(AGENT*, OBLINE*, double*, double*);
+double agent_dis(AGENT, AGENT); // agents 之间距离
+void agent_force(AGENT*, AGENT*, double*, double*,double); // agents 之间作用力
+double point_to_line_dis(double, double, double, double, double, double, double, double*, double*); // 计算点到线距离
+void obline_force(AGENT*, OBLINE*, double*, double*); // 计算障碍物作用力
 
 
 
+// 函数实现
 double randval(double a, double b)
 {
 	return a + (b - a) * rand() / (double)RAND_MAX;
@@ -106,7 +102,6 @@ double agent_dis(AGENT* a1, AGENT* a2)
 {
 	return sqrt((a1->x - a2->x) * (a1->x - a2->x) + (a1->y - a2->y) * (a1->y - a2->y));
 }
-
 
 
 void agent_force(AGENT* a1, AGENT* a2, double* fx, double* fy,double dis) // a1<-a2
@@ -245,10 +240,11 @@ void obline_force(AGENT* a, OBLINE* l, double* fx, double* fy)
 
 //---------------------------------------------以下为A★部分------------------------------------------------
 
-
+//函数声明
 void A_star(AGENT*);
 bool in_map(int, int);
 
+// 结构体
 struct node
 {
 	int x;
@@ -279,15 +275,18 @@ struct node
 
 };
 
+// 数据
 vector<vector<node>> map_matrix_A;
 
+// 可调参数
 const int a_step = 3;
-vector<cordinate> direction = { {a_step,0}, {-a_step,0}, {0,a_step}, {0,-a_step} };
-vector<cordinate> ob_direction = { {a_step,a_step},{a_step,-a_step},{-a_step,-a_step},{-a_step,a_step} };//斜向
-
+vector<cordinate> direction = { {a_step,0}, {-a_step,0}, {0,a_step}, {0,-a_step} }; // 正向
+vector<cordinate> ob_direction = { {a_step,a_step},{a_step,-a_step},{-a_step,-a_step},{-a_step,a_step} }; // 斜向
 const int path_len = 2;
 const int max_time = 800; // ms
 
+
+//函数实现
 void A_star(AGENT* a)
 {
 	list<node*> open_list;
@@ -472,6 +471,7 @@ void A_star(AGENT* a)
 	}
 
 }
+
 
 bool in_map(int x,int y)
 {
