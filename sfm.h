@@ -365,6 +365,7 @@ void A_star(AGENT* a)
 			if (in_map(temp->x + d.x, temp->y + d.y))
 			{
 				int point_type = map_matrix[temp->y + d.y][temp->x + d.x];
+				//if (density_map[temp->y + d.y][temp->x + d.x])point_type == 0;
 				//cout << density_map[temp->y + d.y][temp->x + d.x] << endl;
 				if (point_type != 0 && map_matrix_A[temp->y + d.y][temp->x + d.x].check == 0)//节点在地图内，且不在障碍物部分,且未check过
 				{
@@ -399,6 +400,7 @@ void A_star(AGENT* a)
 				if (in_map(temp->x + d.x, temp->y + d.y))
 				{
 					int point_type = map_matrix[temp->y + d.y][temp->x + d.x];
+					//if (density_map[temp->y + d.y][temp->x + d.x])point_type == 0;
 					if (point_type != 0 && map_matrix_A[temp->y + d.y][temp->x + d.x].check == 0)//节点在地图内，且不在障碍物部分,且未check过 && map_matrix_A[temp->y + d.y][temp->x + d.x].check == 0
 					{
 						if (map_matrix_A[temp->y + d.y][temp->x + d.x].flag == 0) // 表示该点第一次进入open_list

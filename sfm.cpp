@@ -229,7 +229,7 @@ void step()
 			}
 		}
 
-		if (a->jam_time >= jam_time_threshole && agent_counter>8)
+		if (a->jam_time >= jam_time_threshole && agent_counter>15)
 		{
 			a->jam_time = 0;
 			a->path.clear();
@@ -307,9 +307,9 @@ void update_density()
 	}
 	for (int i = 0; i < agent_list.size(); ++i)
 	{
-		for (int j = -3; j <= 3; ++j)
+		for (int j = -2; j <= 2; ++j)
 		{
-			for (int k = -3; k <= 3; ++k)
+			for (int k = -2; k <= 2; ++k)
 			{
 				
 				if (in_map(int(agent_list[i].x * map_factor+j), int(agent_list[i].y * map_factor+k)))
