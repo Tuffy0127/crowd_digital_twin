@@ -1,0 +1,84 @@
+﻿  sfm.cpp
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(348,38): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(348,23): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(348,67): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(348,82): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(356,38): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(356,23): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(356,67): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(356,82): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(366,38): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(366,23): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(368,41): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(368,56): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(370,49): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(370,64): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(372,31): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(372,46): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(374,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(374,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(374,62): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(375,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(375,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(375,62): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(376,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(376,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(376,152): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(377,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(377,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(377,109): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(377,124): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(378,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(378,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(379,28): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(379,43): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(383,56): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(383,71): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(385,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(385,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(385,113): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(385,128): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(386,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(386,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(389,48): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(389,63): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(400,39): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(400,24): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(402,42): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(402,57): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(403,50): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(403,65): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(405,32): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(405,47): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(407,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(407,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(407,63): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(408,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(408,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(408,63): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(409,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(409,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(409,153): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(410,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(410,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(410,113): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(410,128): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(411,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(411,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(412,29): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(412,44): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(416,57): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(416,72): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(418,30): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(418,45): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(418,114): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(418,129): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(419,30): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(419,45): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(422,49): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.h(422,64): warning C4244: “参数”: 从“double”转换到“const unsigned __int64”，可能丢失数据
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(108,13): warning C4477: “fprintf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(108,13): message : 请考虑在格式字符串中使用“%zu”
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(356,13): warning C4477: “fprintf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+C:\Users\leesh\Desktop\srp\srp\srp\sfm.cpp(356,13): message : 请考虑在格式字符串中使用“%zu”
+  srp.vcxproj -> C:\Users\leesh\Desktop\srp\srp\x64\Debug\srp.exe
