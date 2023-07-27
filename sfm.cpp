@@ -230,8 +230,8 @@ void step()
 			}
 		}
 		//cout << agent_counter << endl;
-
-		if (a->jam_time >= jam_time_threshole && agent_counter>12 && agent_counter<=25) // 还没被挤入人群的绕路走,已经在人群里的就别搜了老老实实挤吧
+		//12 25
+		if (a->jam_time >= jam_time_threshole && agent_counter>10 && agent_counter<=20) // 还没被挤入人群的绕路走,已经在人群里的就别搜了老老实实挤吧
 		{
 			a->jam_time = 0;
 			a->path.clear();

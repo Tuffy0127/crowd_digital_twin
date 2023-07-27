@@ -374,7 +374,7 @@ void A_star(AGENT* a)
 						map_matrix_A[temp->y + d.y][temp->x + d.x].x = temp->x + d.x;
 						map_matrix_A[temp->y + d.y][temp->x + d.x].y = temp->y + d.y;
 						map_matrix_A[temp->y + d.y][temp->x + d.x].h = (abs(int(a->gx * map_factor) - (temp->x + d.x)) + abs(int(a->gy * map_factor) - (temp->y + d.y))) * 10;
-						map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 10 * a_step*(point_type+ density_map[temp->y + d.y][temp->x + d.x]);
+						map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 10 * a_step*(point_type*0.75 + density_map[temp->y + d.y][temp->x + d.x]);
 						map_matrix_A[temp->y + d.y][temp->x + d.x].parent = temp;
 						map_matrix_A[temp->y + d.y][temp->x + d.x].flag = 1;
 					}
@@ -382,7 +382,7 @@ void A_star(AGENT* a)
 					{
 						if (temp->g + 10 * a_step < map_matrix_A[temp->y + d.y][temp->x + d.x].g)
 						{
-							map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 10 * a_step * (point_type + density_map[temp->y + d.y][temp->x + d.x]);
+							map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 10 * a_step * (point_type*0.75 + density_map[temp->y + d.y][temp->x + d.x]);
 							map_matrix_A[temp->y + d.y][temp->x + d.x].parent = temp;
 						}
 					}
@@ -408,7 +408,7 @@ void A_star(AGENT* a)
 							map_matrix_A[temp->y + d.y][temp->x + d.x].x = temp->x + d.x;
 							map_matrix_A[temp->y + d.y][temp->x + d.x].y = temp->y + d.y;
 							map_matrix_A[temp->y + d.y][temp->x + d.x].h = (abs(int(a->gx * map_factor) - (temp->x + d.x)) + abs(int(a->gy * map_factor) - (temp->y + d.y))) * 10;
-							map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 14 * a_step * (point_type + density_map[temp->y + d.y][temp->x + d.x]);
+							map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 14 * a_step * (point_type*0.75 + density_map[temp->y + d.y][temp->x + d.x]);
 							map_matrix_A[temp->y + d.y][temp->x + d.x].parent = temp;
 							map_matrix_A[temp->y + d.y][temp->x + d.x].flag = 1;
 						}
@@ -416,7 +416,7 @@ void A_star(AGENT* a)
 						{
 							if (temp->g + 14 * a_step < map_matrix_A[temp->y + d.y][temp->x + d.x].g)
 							{
-								map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 14 * a_step * (point_type + density_map[temp->y + d.y][temp->x + d.x]);
+								map_matrix_A[temp->y + d.y][temp->x + d.x].g = temp->g + 14 * a_step * (point_type*0.75 + density_map[temp->y + d.y][temp->x + d.x]);
 								map_matrix_A[temp->y + d.y][temp->x + d.x].parent = temp;
 							}
 						}
