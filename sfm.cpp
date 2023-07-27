@@ -25,8 +25,8 @@ vector<AGENT> agent_list; // agent vector
 struct OBLINE obstical_lines[MAX_OBLINE_NUM]; // obstical line array
 
 // 输出文件
-FILE* f = fopen("output.txt", "w");
-FILE* ff = fopen("test.txt", "w");
+FILE* f = fopen("C:/Users/leesh/Desktop/srp/output/output.txt", "w");
+FILE* ff = fopen("C:/Users/leesh/Desktop/srp/output/test.txt", "w");
 
 // 终点
 struct cordinate goal[6] = { {5,22},{33,22},{5,34},{33,34},{5,56},{33,56} };
@@ -162,8 +162,8 @@ void init_agent(int agent_num)
 
 void init()
 {
-	init_obline("./map/obstacles4.txt");
-	init_map("./map/matrix4.txt");
+	init_obline("./map/obstacles.txt");
+	init_map("./map/matrix.txt");
 	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
 	init_agent(agent_num);
 }
