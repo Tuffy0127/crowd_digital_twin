@@ -26,11 +26,10 @@ struct OBLINE obstical_lines[MAX_OBLINE_NUM]; // obstical line array
 
 // 输出文件
 FILE* f = fopen("output.txt", "w");
+FILE* ff = fopen("test.txt", "w");
 
 // 终点
 struct cordinate goal[6] = { {5,22},{33,22},{5,34},{33,34},{5,56},{33,56} };
-
-
 
 
 
@@ -173,12 +172,14 @@ void init()
 void output(AGENT* a)
 {
 	fprintf(f, "%d %g %g %d %d\n", a->id, a->x, a->y, a->np, a->color);
+	fprintf(ff, "%d,%g,%g,%g,%g\n", a->id, a->x, a->y, a->vx, a->vy);
 }
 
 
 void step()
 {
-	fprintf(f, "%lu\n", agent_list.size());
+	fprintf(f, "%lld\n", agent_list.size());
+	fprintf(ff, "%lld\n", agent_list.size());
 
 	//单个测试用
 	//fprintf(f, "%lu\n", 2);
@@ -193,7 +194,7 @@ void step()
 		}
 		//first compute the desired direction;
 		double goal_dis = sqrt((a->x - a->next_gx) * (a->x - a->next_gx) + (a->y - a->next_gy) * (a->y - a->next_gy));
-		a->tao_1 = 0.2 + (goal_dis / a->dis) * 0.2;
+		a->tao_1 = 0.1 + (goal_dis / a->dis) * 0.6;
 		double dx = a->v0 * (a->next_gx - a->x) / goal_dis;//期望方向向量的x
 		double dy = a->v0 * (a->next_gy - a->y) / goal_dis;
 		
@@ -230,7 +231,7 @@ void step()
 		}
 		//cout << agent_counter << endl;
 
-		if (a->jam_time >= jam_time_threshole && agent_counter>12 && agent_counter<=20) // 还没被挤入人群的绕路走,已经在人群里的就别搜了老老实实挤吧
+		if (a->jam_time >= jam_time_threshole && agent_counter>12 && agent_counter<=25) // 还没被挤入人群的绕路走,已经在人群里的就别搜了老老实实挤吧
 		{
 			a->jam_time = 0;
 			a->path.clear();
@@ -251,9 +252,6 @@ void step()
 			obline_force(a, &obstical_lines[j], &total_force_x, &total_force_y);
 		}
 
-
-		//cout << total_force_x << endl << total_force_y << endl;
-
 		ax += total_force_x / a->m;//加速度加上社会力的影响
 		ay += total_force_y / a->m;
 
@@ -270,6 +268,7 @@ void step()
 
 		a->x += a->vx * tick;
 		a->y += a->vy * tick;
+
 		if (a->x < 0)
 		{
 			a->x = 1e-10;
@@ -289,9 +288,6 @@ void step()
 
 		output(a);
 
-		//单个测试用
-		//if(!a->path.empty())
-		//fprintf(f, "%d %g %g %d\n", a->id+1, a->path.front().x/map_factor, a->path.front().y/map_factor, 1);
 	}
 }
 
@@ -352,21 +348,21 @@ int main()
 {
 	total_start = clock();
 	
-	omp_set_num_threads(thread_num);
+	// omp_set_num_threads(thread_num);
 
 	init();
 
-	//test();
 
-	
-
-	//初始状态输出
-	fprintf(f, "%lu\n", agent_list.size());
-
+	// 初始状态输出
+	fprintf(f, "%lld\n", agent_list.size());
+	fprintf(ff, "%d,%g,%d,%d\n", step_num, map_factor, col_num, row_num);
+	fprintf(ff, "%lld\n", agent_list.size());
 	for (int i = 0;i<agent_num;++i)
 	{
 		output(&agent_list[i]);
 	}
+
+	// 初始A★
 	int counter = 0;
 	cout << "Initializing path" << endl;
 	for (auto& a : agent_list)
@@ -374,22 +370,18 @@ int main()
 		A_star(&a);
 		counter++;
 		printf("A_star: %d / %d \r", counter, agent_num);
-		/*for (int i = 0; i < a.path.size(); ++i)
-		fprintf(f, "%d %g %g %d\n", a.id+i, a.x, a->y, a->np);*/
 	}
 	cout << endl;
 
+	// 开始模拟
 	clock_t start, end;
 	cout << "Start steps..." << endl;
 	start = clock();
 	for (int i = 0; i < step_num; ++i)
 	{
-		//fstream of("output.txt", ios::app | ios::out);
-		//of << agent_list.size() << endl;
-		
 		step();
 		
-		if ((i + 1) % 100 == 0)
+		if ((i + 1) % 50 == 0)
 		{
 			update_density();
 		}
@@ -404,10 +396,7 @@ int main()
 	}
 	cout << endl;
 
-
 	total_end = clock();
 	cout << "Done " << step_num << " step(s). Total time :"<< (total_end-total_start)/1000/60<< " min(s)" << endl;
 
-
-	//test();
 }
