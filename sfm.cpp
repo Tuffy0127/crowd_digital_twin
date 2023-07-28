@@ -17,12 +17,15 @@ int agent_num = 500;
 int step_num = 5000;
 double tick = 0.03;//timestep
 int jam_time_threshole = 50;
+double total_time = 0;
 
 // 程序数据
 int  obstical_line_num = 0;
 clock_t total_start, total_end;
 vector<AGENT> agent_list; // agent vector
 struct OBLINE obstical_lines[MAX_OBLINE_NUM]; // obstical line array
+vector<vector<double>> seq;
+vector<AGENT> agent_back_list; // agent vector
 
 // 输出文件
 FILE* f = fopen("C:/Users/leesh/Desktop/srp/output/output.txt", "w");
@@ -36,12 +39,14 @@ struct cordinate goal[6] = { {5,22},{33,22},{5,34},{33,34},{5,56},{33,56} };
 // 函数声明
 void init_obline(string);//障碍物读入
 void init_map(string);
+void init_agent_seq(string);
 void init_agent(int);
 void init();
 void output(AGENT*);//写出agent坐标
 void step();
 void update_density();
 void test();
+void push_new_agent();
 
 
 // 函数实现
@@ -117,6 +122,51 @@ void init_map(string map_file)
 }
 
 
+void init_agent_seq(string seq_file)
+{
+	agent_num = 0;
+	fstream infile(seq_file, ios::in);
+	string buf = "";
+	getline(infile, buf);
+	while (!infile.eof())
+	{
+		agent_num++;
+		stringstream ss(buf);
+		seq.push_back(vector<double>());
+		int temp;
+		while (!ss.eof())
+		{
+			ss >> temp;
+			seq[seq.size() - 1].push_back(temp);
+		}
+		getline(infile, buf);
+	}
+	cout << "Initializing " << agent_num << " agent(s)" << endl;;
+	for (int i = 0; i < agent_num; i++)
+	{
+		AGENT a;
+		a.id = seq[i][0];
+		a.x = seq[i][1];
+		a.y = seq[i][2];
+		a.m = 80;
+		a.gx = seq[i][3];
+		a.gy = seq[i][4];
+		a.vx = randval(-2, 2);
+		a.vy = randval(-2, 2);
+		a.v0 = MAX_V;
+		a.next_gx = seq[i][3];
+		a.next_gy = seq[i][4];
+		a.dis = sqrt((a.x - a.gx) * (a.x - a.gx) + (a.y - a.gy) * (a.y - a.gy));
+		int rand = int(randval(0, 6));
+		a.color = rand;
+		a.arrive_time = seq[i][5];
+		agent_back_list.push_back(a);
+	}
+	
+
+}
+
+
 void init_agent(int agent_num)
 {
 	cout << "Initializing " << agent_num << " agent(s)" << endl;;
@@ -166,6 +216,8 @@ void init()
 	init_map("./map/matrix.txt");
 	cout << "row_num: " << row_num << " col_bnum: " << col_num << endl;
 	init_agent(agent_num);
+	//init_agent_seq("./map/seq.txt");
+	//cout << "init finish" << endl;
 }
 
 
@@ -178,6 +230,8 @@ void output(AGENT* a)
 
 void step()
 {
+	total_time += tick;
+	push_new_agent();
 	fprintf(f, "%lld\n", agent_list.size());
 	fprintf(ff, "%lld\n", agent_list.size());
 
@@ -194,7 +248,7 @@ void step()
 		}
 		//first compute the desired direction;
 		double goal_dis = sqrt((a->x - a->next_gx) * (a->x - a->next_gx) + (a->y - a->next_gy) * (a->y - a->next_gy));
-		a->tao_1 = 0.1 + (goal_dis / a->dis) * 0.6;
+		a->tao_1 = 0.1 + (goal_dis/a->dis)*0.5;
 		double dx = a->v0 * (a->next_gx - a->x) / goal_dis;//期望方向向量的x
 		double dy = a->v0 * (a->next_gy - a->y) / goal_dis;
 		
@@ -346,10 +400,27 @@ void test()
 }
 
 
+void push_new_agent()
+{
+	for (int i = 0; i < agent_back_list.size(); ++i)
+	{
+		if (total_time >= agent_back_list[i].arrive_time)
+		{
+			A_star(&agent_back_list[i]);
+			agent_list.push_back(agent_back_list[i]);
+			agent_back_list.erase(agent_back_list.begin()+i);
+			
+		}
+	}
+}
+
+
 
 // main
 int main()
 {
+	
+
 	total_start = clock();
 	
 	// omp_set_num_threads(thread_num);
@@ -361,7 +432,7 @@ int main()
 	fprintf(f, "%lld\n", agent_list.size());
 	fprintf(ff, "%d,%g,%d,%d\n", step_num, map_factor, col_num, row_num);
 	fprintf(ff, "%lld\n", agent_list.size());
-	for (int i = 0;i<agent_num;++i)
+	for (int i = 0;i<agent_list.size(); ++i)
 	{
 		output(&agent_list[i]);
 	}
@@ -376,7 +447,6 @@ int main()
 		printf("A_star: %d / %d \r", counter, agent_num);
 	}
 	cout << endl;
-
 	// 开始模拟
 	clock_t start, end;
 	cout << "Start steps..." << endl;

@@ -786,12 +786,6 @@ output9
 
 
 
-
-
- ### Recognition-Primed Decision❗
-
-
-
 ### OpenMP Parallel
 
 byd并行内存爆了😭
@@ -829,6 +823,36 @@ a_step从3调到5之后速度快了很多，效果没有太大影响✔
 
 
 A⭐增加一个逃逸点，离这个点越近开销越高，把人群密度高的地方设置逃逸点
+
+
+
+
+
+### 拓展到多维度
+
+目前加了agent进入的序列文件
+
+
+
+
+
+### 给agent设计几种个性
+
+
+
+
+
+### Agent需要从周围获取信息
+
+
+
+
+
+### Recognition-Primed Decision❗
+
+
+
+
 
 
 

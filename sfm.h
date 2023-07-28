@@ -67,6 +67,7 @@ struct AGENT
 	int jam_time=0; // 连续多次速度过小时增加，达到设定次数时判定为卡住，重新寻路
 	int np = 0;// no path flag
 	int color = 0;
+	double arrive_time = 0;
 
 	list<cordinate> path; // A* 路径存储
 }; // agent 结构体
@@ -209,6 +210,7 @@ void obline_force(AGENT* a, OBLINE* l, double* fx, double* fy)
 	double riw = a->m / density - dis; // 半径-距离
 	double rif = A * exp(riw / B);
 	double bf = riw < 0 ? 0 : k1*riw;
+	//if (bf != 0)cout << endl;
 	// 点与线作用力点的方向向量
 	double nx = (a->x-px) / dis;
 	double ny = (a->y-py) / dis;
