@@ -238,7 +238,7 @@ void step()
 			A_star(a);
 
 		}
-		else if (a->jam_time >= jam_time_threshole + 50)
+		else if (a->jam_time >= jam_time_threshole + 100)
 		{
 			a->jam_time = 0;
 			a->path.clear();
@@ -304,14 +304,18 @@ void update_density()
 	}
 	for (int i = 0; i < agent_list.size(); ++i)
 	{
-		for (int j = -2; j <= 2; ++j)
+		if (agent_list[i].vx <= 0.1 && agent_list[i].vy <= 0.1)
 		{
-			for (int k = -2; k <= 2; ++k)
+
+			for (int j = -3; j <= 3; ++j)
 			{
-				
-				if (in_map(int(agent_list[i].x * map_factor+j), int(agent_list[i].y * map_factor+k)))
+				for (int k = -3; k <= 3; ++k)
 				{
-					density_map[int(agent_list[i].y * map_factor+k)][int(agent_list[i].x * map_factor+j)] += 10;
+
+					if (in_map(int(agent_list[i].x * map_factor + j), int(agent_list[i].y * map_factor + k)))
+					{
+						density_map[int(agent_list[i].y * map_factor + k)][int(agent_list[i].x * map_factor + j)] += 2 * (abs(j) + abs(k));
+					}
 				}
 			}
 		}
