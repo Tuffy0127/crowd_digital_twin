@@ -94,13 +94,13 @@ cordinate (double a, double b)
 
 公式:
 
-![image-20230725112642790](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725112642790.png)
+![image-20230725112642790](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725112642790.png)
 
 (距离为0的情况需要判断)
 
 (这里的感知距离判断放在函数外)
 
-计算作用力方向: ![image-20230725141806614](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141806614.png)
+计算作用力方向: ![image-20230725141806614](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141806614.png)
 
 ```C++
 double dx = (a1->x - a2->x) / dis; // a2对a1施加的力的单位方向向量的x
@@ -141,7 +141,7 @@ if (cos1 >= 0.866 && cos2 >= 0.866)//60`
 
 
 
-计算半径减去中心点距离: ![image-20230725113351181](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725113351181.png)
+计算半径减去中心点距离: ![image-20230725113351181](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725113351181.png)
 
 ```C++
 double rij = a1->m / density + a2->m / density; // 两个agent半径和
@@ -150,7 +150,7 @@ double delta_d = rij - dis; // 半径和减去中心点距离
 
 
 
-排斥性相互作用力(社会力): ![image-20230725113546393](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725113546393.png)
+排斥性相互作用力(社会力): ![image-20230725113546393](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725113546393.png)
 
 ```C++
 double rif = A * exp(delta_d / B); // repulsive interaction force 斥力
@@ -158,7 +158,7 @@ double rif = A * exp(delta_d / B); // repulsive interaction force 斥力
 
 
 
-躯干力: ![image-20230725113702643](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725113702643.png)
+躯干力: ![image-20230725113702643](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725113702643.png)
 
 ```C++
 double bf = delta_d < 0 ? 0 : k1 * delta_d; // body force agents接触时存在的力
@@ -166,7 +166,7 @@ double bf = delta_d < 0 ? 0 : k1 * delta_d; // body force agents接触时存在�
 
 
 
-切向力: ![image-20230725113733647](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725113733647.png)
+切向力: ![image-20230725113733647](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725113733647.png)
 
 ```C++
 // 切向力 agents接触时存在
@@ -228,13 +228,13 @@ if (delta_d > 0) // 身体半径有接触时
 
 公式:
 
-![image-20230725141231859](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141231859.png)
+![image-20230725141231859](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141231859.png)
 
 (距离为0的情况需要判断)
 
 (这里的感知距离判断放在函数内)
 
-计算作用力方向: ![image-20230725141749949](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141749949.png)
+计算作用力方向: ![image-20230725141749949](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141749949.png)
 
 ```C++
 // 点与线作用力点的方向向量
@@ -244,7 +244,7 @@ double ny = (a->y-py) / dis;
 
 
 
-计算半径减去距离: ![image-20230725141500491](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141500491.png)
+计算半径减去距离: ![image-20230725141500491](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141500491.png)
 
 ```c++
 double dis = point_to_line_dis(a->x, a->y, l->sx, l->sy, l->ex, l->ey, l->len, &px, &py);
@@ -253,7 +253,7 @@ double riw = a->m / density - dis; // 半径-距离
 
 
 
-排斥性相互作用力(社会力): ![image-20230725141708918](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141708918.png)
+排斥性相互作用力(社会力): ![image-20230725141708918](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141708918.png)
 
 ```C++
 double rif = A * exp(riw / B);
@@ -261,7 +261,7 @@ double rif = A * exp(riw / B);
 
 
 
-躯干力: ![image-20230725141734729](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141734729.png)
+躯干力: ![image-20230725141734729](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141734729.png)
 
 ```C++
 double bf = riw < 0 ? 0 : k1*riw;
@@ -269,7 +269,7 @@ double bf = riw < 0 ? 0 : k1*riw;
 
 
 
-切向力: ![image-20230725141857903](C:\Users\leesh\AppData\Roaming\Typora\typora-user-images\image-20230725141857903.png)
+切向力: ![image-20230725141857903](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230725141857903.png)
 
 ```C++
 double tfx = 0;
@@ -828,11 +828,53 @@ A⭐增加一个逃逸点，离这个点越近开销越高，把人群密度高�
 
 
 
-### 拓展到多维度
+### 拓展到多维度⚠
 
 目前加了agent进入的序列文件
 
 
+
+map 初始化
+
+
+
+agent 初始化,到目标的dis修改为到目的地水平距离乘以[(楼层差的绝对值)+1] 防止为0
+
+
+
+obline_list 初始化, 之后使用数组的要全部替换为vector
+
+
+
+agent_seq 初始化, seq文件格式更新
+
+
+
+update_density
+
+
+
+output 多输出一个level
+
+
+
+step: agent非同层不计算, obline 非同层不计算
+
+
+
+A* 只在同一层搜索
+
+
+
+agent还要加个最终目标fg, 之前的g用于指向同层目标
+
+
+
+到达level goal判断是否为final goal, 是则标识到达,否则需要执行上下楼
+
+
+
+上下楼分为走楼梯和走电梯
 
 
 
@@ -854,7 +896,39 @@ A⭐增加一个逃逸点，离这个点越近开销越高，把人群密度高�
 
 
 
+### 优化agent速度方向
 
+输出agent朝向目标方向而非速度方向,可以避免方向反复跳
+
+
+
+
+
+
+
+## 输入文件
+
+### map_matrix
+
+有多少层就有多少matrix文件
+
+![image-20230731101657047](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230731101657047.png)
+
+
+
+### obstacles
+
+sy sx ey ex
+
+![image-20230731101756373](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230731101756373.png)
+
+
+
+### seq
+
+id sx sy level gx gy g_level arrive_time
+
+![image-20230731102032175](C:\Users\leesh\Desktop\srp\srp\srp\pic\image-20230731102032175.png)
 
 
 
@@ -862,37 +936,37 @@ A⭐增加一个逃逸点，离这个点越近开销越高，把人群密度高�
 
 output.txt
 
-总帧数,放大倍数,宽,高
+总帧数,放大倍数
 
 这一帧的agent数量
 
-id,x坐标,y坐标,速度x方向,速度y方向
+id,x坐标,y坐标,楼层,速度x方向,速度y方向
 
 这一帧的agent数量
 
-id,x坐标,y坐标,速度x方向,速度y方向
+id,x坐标,y坐标,楼层,速度x方向,速度y方向
 
 
 
 E.g
 
-2,10,382,679
+2,10
 
 3
 
-0,1,1,1,1
+0,1,1,0,1,1
 
-1,2,2,1,1
+1,2,2,0,1,1
 
-2,3,3,1,1
+2,3,3,0,1,1
 
 3
 
-0,1,1,1,1
+0,1,1,0,1,1
 
-1,2,2,1,1
+1,2,2,0,1,1
 
-2,3,3,1,1
+2,3,3,0,1,1
 
 
 

@@ -18,6 +18,8 @@ using namespace std;
 #define density 320 // 质量/半径，m/density = r 320
 #define tao 0.5 // 目前方向转移到目标方向的加速度参数
 
+
+
 // sfm参数
 #define k1 120000 // body force parameter
 #define k2 240000 // tangential force parameter 切向力参数s
@@ -68,6 +70,7 @@ struct AGENT
 	int np = 0;// no path flag
 	int color = 0;
 	double arrive_time = 0;
+
 
 	list<cordinate> path; // A* 路径存储
 }; // agent 结构体
