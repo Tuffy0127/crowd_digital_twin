@@ -287,7 +287,7 @@ vector<vector<node>> map_matrix_A;
 const int a_step = 5;
 vector<cordinate> direction = { {a_step,0}, {-a_step,0}, {0,a_step}, {0,-a_step} }; // 正向
 vector<cordinate> ob_direction = { {a_step,a_step},{a_step,-a_step},{-a_step,-a_step},{-a_step,a_step} }; // 斜向
-const int path_len = 2;
+const int path_len = 1;
 const int max_time = 800; // ms
 
 
@@ -347,7 +347,7 @@ void A_star(AGENT* a)
 
 		bool flag = 0;
 		// 判断周围是否有墙
-		for (auto d : direction)
+		/*for (auto d : direction)
 		{
 			if (in_map(temp->x + d.x, temp->y + d.y) && map_matrix[temp->y + d.y][temp->x + d.x] == 0)
 			{
@@ -362,13 +362,30 @@ void A_star(AGENT* a)
 				flag = 1;
 				break;
 			}
-		}
+		}*/
 
 		// 正方向上搜索,此时移动代价为10
 		for (auto d : direction)
 		{
 			if (in_map(temp->x + d.x, temp->y + d.y))
 			{
+				bool wall = 0;
+				if (in_map(temp->x + d.x, temp->y + d.y))
+				{
+					for (double i = 1; i <= a_step; ++i)
+					{
+						// cout << d.y * (i / a_step) <<" " << d.x * (i / a_step) << endl;
+						if (map_matrix[temp->y + d.y * (i / a_step)][temp->x + d.x * (i / a_step)] == 0)
+						{
+							wall = 1;
+							flag = 1;
+							break;
+						}
+					}
+					if (wall)
+					{
+						continue;
+					}
 				int point_type = map_matrix[temp->y + d.y][temp->x + d.x];
 				//if (density_map[temp->y + d.y][temp->x + d.x])point_type == 0;
 				//cout << density_map[temp->y + d.y][temp->x + d.x] << endl;
